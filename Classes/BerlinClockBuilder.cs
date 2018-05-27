@@ -15,7 +15,7 @@ namespace BerlinClock.Classes
             berlinClock.AppendLine(BuildFirstHoursLine(dateTime));
             berlinClock.AppendLine(BuildSecondHoursLine(dateTime));
             berlinClock.AppendLine(BuildFirstMinutesLine(dateTime));
-            berlinClock.AppendLine(BuildSecondMinutesLine(dateTime));
+            berlinClock.Append(BuildSecondMinutesLine(dateTime));
             return berlinClock.ToString();
         }
         private string BuildFirstLine(DateTime date)
@@ -26,24 +26,50 @@ namespace BerlinClock.Classes
         private string BuildFirstHoursLine(DateTime date)
         {
             var noOfRedLights = (int)Math.Floor(date.Hour / 5.0);
+
             return string.Format("{0}{1}",
                 new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Red, noOfRedLights).ToArray()),
-                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Red, Constants.Ints.NoOfLightsFirstLine - noOfRedLights).ToArray()));
+                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsFirstLine - noOfRedLights).ToArray()));
         }
 
         private string BuildSecondHoursLine(DateTime date)
         {
-            return string.Empty;
+            var noOfRedLights = (int)Math.Floor(date.Hour % 5.0);
+
+            return string.Format("{0}{1}",
+                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Red, noOfRedLights).ToArray()),
+                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsSecondLine - noOfRedLights).ToArray()));
+
         }
 
         private string BuildFirstMinutesLine(DateTime date)
         {
-            return string.Empty;
+            var noOfOpenedLights = (int)Math.Floor(date.Minute / 5.0);
+
+            var openedLights = new StringBuilder();
+            for (int i = 1; i <= noOfOpenedLights; i++)
+            {
+                if(i%3 == 0)
+                {
+                    openedLights.Append(Constants.Strings.LightIndicators.Red);
+                }
+                else
+                {
+                    openedLights.Append(Constants.Strings.LightIndicators.Yellow);
+                }
+            }           
+
+            return string.Format("{0}{1}", openedLights.ToString(),
+                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsThirdLine - openedLights.Length).ToArray()));
         }
 
         private string BuildSecondMinutesLine(DateTime date)
         {
-            return string.Empty;
+            var noOfLights = (int)Math.Floor(date.Minute % 5.0);
+
+            return string.Format("{0}{1}",
+                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Yellow, noOfLights).ToArray()),
+                new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsForthLine - noOfLights).ToArray()));
         }
     }
 }
