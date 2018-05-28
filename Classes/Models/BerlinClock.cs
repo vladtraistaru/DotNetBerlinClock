@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BerlinClock.Classes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,9 @@ namespace BerlinClock.Classes
     public class BerlinClock
     {
         public string TimeStr { get; private set; }
-        public DateTime Time { get; private set; }
+        public Time Time { get; private set; }
 
-        public static BerlinClock FromDateTime(DateTime time)
+        public static BerlinClock FromTime(Time time)
         {
             var builder = new BerlinClockBuilder();
             var result = builder.BuildBerlinClockRepresentation(time);

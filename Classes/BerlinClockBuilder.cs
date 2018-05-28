@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BerlinClock.Classes.Models;
+using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BerlinClock.Classes
 {
     public class BerlinClockBuilder : IBerlinClockBuilder
     {
-        public string BuildBerlinClockRepresentation(DateTime dateTime)
+        public string BuildBerlinClockRepresentation(Time Time)
         {
             var berlinClock = new StringBuilder();
-            berlinClock.AppendLine(BuildFirstLine(dateTime));
-            berlinClock.AppendLine(BuildFirstHoursLine(dateTime));
-            berlinClock.AppendLine(BuildSecondHoursLine(dateTime));
-            berlinClock.AppendLine(BuildFirstMinutesLine(dateTime));
-            berlinClock.Append(BuildSecondMinutesLine(dateTime));
+            berlinClock.AppendLine(BuildFirstLine(Time));
+            berlinClock.AppendLine(BuildFirstHoursLine(Time));
+            berlinClock.AppendLine(BuildSecondHoursLine(Time));
+            berlinClock.AppendLine(BuildFirstMinutesLine(Time));
+            berlinClock.Append(BuildSecondMinutesLine(Time));
             return berlinClock.ToString();
         }
-        private string BuildFirstLine(DateTime date)
+        private string BuildFirstLine(Time date)
         {
             return (date.Second % 2 == 0) ? Constants.Strings.LightIndicators.Yellow.ToString() : Constants.Strings.LightIndicators.Off.ToString();
         }
 
-        private string BuildFirstHoursLine(DateTime date)
+        private string BuildFirstHoursLine(Time date)
         {
             var noOfRedLights = (int)Math.Floor(date.Hour / 5.0);
 
@@ -32,7 +31,7 @@ namespace BerlinClock.Classes
                 new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsFirstLine - noOfRedLights).ToArray()));
         }
 
-        private string BuildSecondHoursLine(DateTime date)
+        private string BuildSecondHoursLine(Time date)
         {
             var noOfRedLights = (int)Math.Floor(date.Hour % 5.0);
 
@@ -42,7 +41,7 @@ namespace BerlinClock.Classes
 
         }
 
-        private string BuildFirstMinutesLine(DateTime date)
+        private string BuildFirstMinutesLine(Time date)
         {
             var noOfOpenedLights = (int)Math.Floor(date.Minute / 5.0);
 
@@ -63,7 +62,7 @@ namespace BerlinClock.Classes
                 new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsThirdLine - openedLights.Length).ToArray()));
         }
 
-        private string BuildSecondMinutesLine(DateTime date)
+        private string BuildSecondMinutesLine(Time date)
         {
             var noOfLights = (int)Math.Floor(date.Minute % 5.0);
 

@@ -55,6 +55,7 @@
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\Extensions.cs" />
     <Compile Include="Classes\IBerlinClockBuilder.cs" />
+    <Compile Include="Classes\Models\Time.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BDD\BerlinClockFeatureSteps.feature.cs">
       <AutoGen>True</AutoGen>

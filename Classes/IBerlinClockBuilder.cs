@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BerlinClock.Classes.Models;
 
 namespace BerlinClock.Classes
 {
     public interface IBerlinClockBuilder
     {
-        string BuildBerlinClockRepresentation(DateTime dateTime);
+        string BuildBerlinClockRepresentation(Time dateTime);
     }
 }
