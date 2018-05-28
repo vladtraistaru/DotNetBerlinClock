@@ -9,7 +9,7 @@ namespace BerlinClock.Classes
     public class BerlinClock
     {
         public string TimeStr { get; private set; }
-        public DateTime Time { get; private set; }               
+        public DateTime Time { get; private set; }
 
         public static BerlinClock FromDateTime(DateTime time)
         {

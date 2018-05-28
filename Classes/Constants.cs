@@ -18,6 +18,15 @@ namespace BerlinClock.Classes
 
                 public static char Off = 'O';
             }
+
+            public static class BerlinClock
+            {
+                public static string SpecialRepresentation2400Hours = @"Y" + Environment.NewLine +
+                                                                        "RRRR" + Environment.NewLine +
+                                                                        "RRRR" + Environment.NewLine +
+                                                                        "OOOOOOOOOOO" + Environment.NewLine +
+                                                                        "OOOO";
+            }
         }
 
         public static class Ints

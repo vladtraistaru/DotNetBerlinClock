@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDD\BerlinClockFeatureSteps.cs" />
-    <Compile Include="Classes\BerlinClock.cs" />
+    <Compile Include="Classes\Models\BerlinClock.cs" />
     <Compile Include="Classes\BerlinClockBuilder.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\Extensions.cs" />
