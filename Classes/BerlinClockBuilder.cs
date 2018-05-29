@@ -48,7 +48,7 @@ namespace BerlinClock.Classes
             var openedLights = new StringBuilder();
             for (int i = 1; i <= noOfOpenedLights; i++)
             {
-                if(i%3 == 0)
+                if (i % 3 == 0)
                 {
                     openedLights.Append(Constants.Strings.LightIndicators.Red);
                 }
@@ -56,7 +56,7 @@ namespace BerlinClock.Classes
                 {
                     openedLights.Append(Constants.Strings.LightIndicators.Yellow);
                 }
-            }           
+            }
 
             return string.Format("{0}{1}", openedLights.ToString(),
                 new string(Enumerable.Repeat(Constants.Strings.LightIndicators.Off, Constants.Ints.NoOfLightsThirdLine - openedLights.Length).ToArray()));
